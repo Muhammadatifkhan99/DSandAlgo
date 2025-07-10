@@ -35,6 +35,7 @@ void merge(vector<int> &arr,int low,int mid,int high){
     //copies values to the older array
 
     for(int i = low;i<=high;i++){
+        cout << "Value of start: " << low << endl;
         arr[i] = ans[i-low];
     }
 }
