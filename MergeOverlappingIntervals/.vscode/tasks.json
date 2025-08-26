@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compile and run",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "g++ -std=c++17 -Wall -o '${fileDirname}/${fileBasenameNoExtension}.out' '${file}' && '${fileDirname}/${fileBasenameNoExtension}.out' < '${fileDirname}/input.txt' > '${fileDirname}/output.txt'"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "never",      // don't open terminal output
+        "focus": false,         // don't steal focus
+        "panel": "shared"
+      },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
