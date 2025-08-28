@@ -1,3 +1,5 @@
 Play ground is up and running, just Code !!!
 
-0 1 2 3 5 6 7 8 9 
+0 1 2 3 
+Array 2 Elements
+5 6 7 8 9 
