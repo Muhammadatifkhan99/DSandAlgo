@@ -26,17 +26,17 @@ struct Node{
     void inOrder(Node *root){
         if(root == NULL) return;
 
-        preOrder(root->left);
+        inOrder(root->left);
         cout << root->data << "->";
-        preOrder(root->right);
+        inOrder(root->right);
 
     }
 
     void postOrder(Node *root){
         if(root == NULL) return;
 
-        preOrder(root->left);
-        preOrder(root->right);
+        postOrder(root->left);
+        postOrder(root->right);
         cout << root->data << "->";
 
     }
@@ -62,34 +62,47 @@ struct Node{
         }
         return ans;
     }
-};
 
-class Node1{
-public:
-    int data;
+    //Iterative Traversals
 
-    Node1 *left1;
-    Node1 *right1;
+    vector<int> preOrderTraversal(Node* root){
+        vector<int> preOrder;
+        if(root==NULL) return preOrder;
+        stack<Node*>st;
+        st.push(root);
+        while(!st.empty()){
+            root = st.top();
+            st.pop();
+            preOrder.push_back(root->data);
+            //as we have stack so we will be following the LIFO rules so to get the left most value first we pushed the right first
+            if(root->right != NULL) st.push(root->right);
+            if(root->left  != NULL) st.push(root->left);
 
-    Node1(int val){
-        data = val;
-        left1 = right1 = NULL;
+        }
+        return preOrder;
     }
 
-    void preOrder(Node1 *root){
-    if(root == NULL) return;
+    ///Iterative Inorder Traversal
+    vector<int> inorderTraversal(Node *node){
+        vector<int> inOrder;
+        Node* root = node;
+        stack<Node*>st;
+        while(true){
+            if(node != NULL){
+                st.push(node);
+                node = node->left;
+            } else {
+                if(st.empty() == true) break;
+                node = st.top();
+                st.pop();
+                inOrder.push_back(node->data);
+                node = node->right;
+            }
+        }
+        return inOrder;
+    }
+};          
 
-    cout << root->data << endl;
-    preOrder(root->left1);
-    preOrder(root->right1);
-
-}
-
-    // void preOrder(Node1 node){
-    //     if(node == NULL) return;
-
-    // }
-};
 
 int main(){
 
@@ -100,8 +113,12 @@ int main(){
     Node *root = new Node(1);
 
     root->left = new Node(2);
-    root->right = new Node(3);
-    root->left->right = new Node(5);
+    root->right = new Node(7);
+    root->left->right = new Node(4);
+    root->left->left = new Node(3);
+    root->left->right->left = new Node(5);
+    root->left->right->right = new Node(6);
+    root->right = new Node(7);
 
     root->preOrder(root);
     cout << endl;
@@ -110,12 +127,28 @@ int main(){
     root->postOrder(root);
     root->levelOrder(root);
 
+    //preOrder Traversals
+    cout << endl;
+    vector<int> traversal = root->preOrderTraversal(root);
+    for(auto it: traversal){
+        cout << it << "->    ";
+    }
+    cout << endl;
 
-    Node1 *root1 = new Node1(1);
+    Node *root1 = new Node(1);
+    root1->left = new Node(2);
+    root1->right = new Node(3);
+    root1->left->left = new Node(4);
+    root1->left->right = new Node(5);
+    root1->left->right->left = new Node(6);
+    root1->left->right->right = new Node(7);
 
-    root1->left1 = new Node1(2);
-    root1->right1 = new Node1(3);
-    root1->left1->right1 = new Node1(5);
+    //inorderTraversals
+    vector<int> traversal1 = root1->inorderTraversal(root1);
+    for(auto it: traversal1){
+        cout << it << "->";
+    }
+    cout << endl;
 
     // vector<int> ans = {2,3,6,7,9};
     // vector<int> ans1 = {1,4,8,10};
