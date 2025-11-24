@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "valarray": "cpp"
+    },
+    "C_Cpp.default.compilerPath": "/bin/g++",
+    "C_Cpp.errorSquiggles": "disabled"
+}
