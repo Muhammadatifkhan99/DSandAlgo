@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile-and-run-silent",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "g++ -std=c++17 -Wall *.cpp -o main.out && ./main.out < input.txt > output.txt"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "echo": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
